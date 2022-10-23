@@ -1,0 +1,50 @@
+#calculator {
+    height: 500px;
+    width: 300px;
+    border: 8px solid navy;
+    border-radius: 15px;
+    background-color: silver;
+}
+
+.logo-header {
+    margin-top: 10px;
+    text-align: center;
+    color: #ffd900;
+    font-family: 'Apple Chancery', cursive;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.display {
+    height: 50px;
+    background-color: beige;
+    margin: 5px 10px;
+    border: 3px solid black;
+    border-radius: 10px;
+    text-align: right;
+    font-size: 44px;
+    font-family: Impact, fantasy;
+}
+
+.numbers {
+    margin: 0px 5px;
+}
+
+.buttons {
+    display: flex;
+}
+
+button {
+    height: 65px;
+    width: 65px;
+    margin: 5px 4px;
+}
+
+.add {
+    height: 140px;
+}
+
+.column2 {
+    display: flex;
+    flex-direction: column;
+}
