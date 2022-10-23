@@ -1,5 +1,7 @@
 const digits = Array.from(document.querySelectorAll(".digit"));
+const dot = document.querySelector(".dot");
 digits.forEach(digit => digit.addEventListener('click', pressDigit));
+dot.addEventListener('click', pressDot);
 
 function add(a,b) {
     return a + b;
@@ -28,9 +30,18 @@ function operate(operator,a,b) {
 
 function pressDigit(e) {
     const numbers = document.querySelector(".numbers");
-    if (numbers.textContent == 0) {
+    if (numbers.textContent === "0") {
         numbers.textContent = e.target.textContent;
     } else {
         numbers.textContent += e.target.textContent;
+    }
+}
+
+function pressDot() {
+    const numbers = document.querySelector(".numbers");
+    if (numbers.textContent.includes('.')) {
+        return;
+    } else {
+        numbers.textContent += '.';
     }
 }
