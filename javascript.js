@@ -1,6 +1,11 @@
+let a;
+let b;
+let operator;
+
 const digits = Array.from(document.querySelectorAll(".digit"));
 const dot = document.querySelector(".dot");
 const plusMinus = document.querySelector(".plus-minus");
+
 digits.forEach(digit => digit.addEventListener('click', pressDigit));
 dot.addEventListener('click', pressDot);
 plusMinus.addEventListener('click', plusOrMinus);
