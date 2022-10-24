@@ -5,10 +5,14 @@ let operator;
 const digits = Array.from(document.querySelectorAll(".digit"));
 const dot = document.querySelector(".dot");
 const plusMinus = document.querySelector(".plus-minus");
+const allClear = document.querySelector(".all-clear-button");
+const clear = document.querySelector(".clear-button");
 
 digits.forEach(digit => digit.addEventListener('click', pressDigit));
 dot.addEventListener('click', pressDot);
 plusMinus.addEventListener('click', plusOrMinus);
+allClear.addEventListener('click', pressAllClear);
+clear.addEventListener('click', pressClear);
 
 function add(a,b) {
     return a + b;
@@ -67,4 +71,18 @@ function plusOrMinus() {
     } else {
         numbers.textContent = "-" + numbers.textContent;
     }
+}
+
+function pressAllClear () {
+    const numbers = document.querySelector(".numbers");
+    numbers.textContent = "0";
+    a = undefined;
+    b = undefined;
+    operator = undefined;
+    return [a, b, operator];
+}
+
+function pressClear() {
+    const numbers = document.querySelector(".numbers");
+    numbers.textContent = "0";
 }
