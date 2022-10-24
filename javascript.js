@@ -7,12 +7,16 @@ const dot = document.querySelector(".dot");
 const plusMinus = document.querySelector(".plus-minus");
 const allClear = document.querySelector(".all-clear-button");
 const clear = document.querySelector(".clear-button");
+const operators = Array.from(document.querySelectorAll(".operator"));
+const equal = document.querySelector(".equal");
 
 digits.forEach(digit => digit.addEventListener('click', pressDigit));
 dot.addEventListener('click', pressDot);
 plusMinus.addEventListener('click', plusOrMinus);
 allClear.addEventListener('click', pressAllClear);
 clear.addEventListener('click', pressClear);
+operators.forEach(operatorButton => operatorButton.addEventListener('click', pressOperator));
+equal.addEventListener('click', pressEqual);
 
 function add(a,b) {
     return a + b;
@@ -85,4 +89,31 @@ function pressAllClear () {
 function pressClear() {
     const numbers = document.querySelector(".numbers");
     numbers.textContent = "0";
+}
+
+function pressOperator(e) {
+    const numbers = document.querySelector(".numbers");
+    if (a === undefined) {
+        a = numbers.textContent;
+        numbers.textContent = "0";
+    } else {
+        pressEqual();
+    }
+    operator = e.target.classList[1];
+    return [a,b,operator];
+}
+
+function pressEqual() {
+    const numbers = document.querySelector(".numbers");
+    if (a === undefined) {
+        return;
+    } else if (b === undefined) {
+        b = numbers.textContent;
+        a = operate(operator,a,b);
+        numbers.textContent = a;
+    } else {
+        a = operate(operator,a,b);
+        numbers.textContent = a;
+    }
+    return [a,b];
 }
