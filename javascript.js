@@ -1,7 +1,9 @@
 const digits = Array.from(document.querySelectorAll(".digit"));
 const dot = document.querySelector(".dot");
+const plusMinus = document.querySelector(".plus-minus");
 digits.forEach(digit => digit.addEventListener('click', pressDigit));
 dot.addEventListener('click', pressDot);
+plusMinus.addEventListener('click', plusOrMinus);
 
 function add(a,b) {
     return a + b;
@@ -32,6 +34,8 @@ function pressDigit(e) {
     const numbers = document.querySelector(".numbers");
     if (numbers.textContent === "0") {
         numbers.textContent = e.target.textContent;
+    } else if (numbers.textContent === "-0") {
+        numbers.textContent = "-" + e.target.textContent;
     } else {
         numbers.textContent += e.target.textContent;
     }
@@ -43,5 +47,17 @@ function pressDot() {
         return;
     } else {
         numbers.textContent += '.';
+    }
+}
+
+function plusOrMinus() {
+    const numbers = document.querySelector(".numbers");
+    if (numbers.textContent.includes('-')) {
+        const arrayNumbers = numbers.textContent.split("");
+        const positiveArrayNumbers = arrayNumbers.slice(1);
+        const positiveNumbers = positiveArrayNumbers.join("");
+        numbers.textContent = positiveNumbers;
+    } else {
+        numbers.textContent = "-" + numbers.textContent;
     }
 }
