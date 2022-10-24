@@ -32,12 +32,14 @@ function operate(operator,a,b) {
 
 function pressDigit(e) {
     const numbers = document.querySelector(".numbers");
-    if (numbers.textContent === "0") {
-        numbers.textContent = e.target.textContent;
-    } else if (numbers.textContent === "-0") {
-        numbers.textContent = "-" + e.target.textContent;
-    } else {
-        numbers.textContent += e.target.textContent;
+    if (numbers.textContent.length < 11) {
+        if (numbers.textContent === "0") {
+            numbers.textContent = e.target.textContent;
+        } else if (numbers.textContent === "-0") {
+            numbers.textContent = "-" + e.target.textContent;
+        } else {
+            numbers.textContent += e.target.textContent;
+        }
     }
 }
 
