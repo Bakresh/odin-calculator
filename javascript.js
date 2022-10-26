@@ -103,7 +103,10 @@ function pressOperator(e) {
     if (a === undefined) {
         a = displayNumber;
         displayNumber = "0";
-    } else {
+    } else if (b === undefined) {
+        pressEqual();
+    } else if (b !== undefined && displayNumber === document.querySelector(".numbers").textContent) {
+        b = displayNumber;
         pressEqual();
     }
     operator = e.target.classList[1];
@@ -116,9 +119,14 @@ function pressEqual() {
         b = displayNumber;
         a = operate(operator,a,b);
         displayNumber = a;
+    } else if (b !== undefined && displayNumber === document.querySelector(".numbers").textContent) {
+        b = displayNumber;
+        a = operate(operator,a,b);
+        displayNumber = a;
     } else {
         a = operate(operator,a,b);
         displayNumber = a;
     }
     updateDisplay();
+    displayNumber = "0";
 }
