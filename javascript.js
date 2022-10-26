@@ -36,8 +36,8 @@ function divide(a,b) {
 }
 
 function operate(operator,a,b) {
-    aInt = parseInt(a);
-    bInt = parseInt(b);
+    aInt = parseFloat(a);
+    bInt = parseFloat(b);
     if (operator === "add") return add(aInt,bInt);
     if (operator === "subtract") return subtract(aInt,bInt);
     if (operator === "multiply") return multiply(aInt,bInt);
