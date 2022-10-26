@@ -106,7 +106,6 @@ function pressOperator(e) {
     } else if (b === undefined) {
         pressEqual();
     } else if (b !== undefined && displayNumber === document.querySelector(".numbers").textContent) {
-        b = displayNumber;
         pressEqual();
     }
     operator = e.target.classList[1];
