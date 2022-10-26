@@ -1,3 +1,4 @@
+let displayNumber = "0";
 let a;
 let b;
 let operator;
@@ -43,77 +44,81 @@ function operate(operator,a,b) {
     if (operator === "divide") return divide(aInt,bInt);
 }
 
-function pressDigit(e) {
+function updateDisplay() {
     const numbers = document.querySelector(".numbers");
-    if (numbers.textContent.length < 11) {
-        if (numbers.textContent === "0") {
-            numbers.textContent = e.target.textContent;
-        } else if (numbers.textContent === "-0") {
-            numbers.textContent = "-" + e.target.textContent;
+    numbers.textContent = displayNumber;
+    if (displayNumber.length > 11) {
+        numbers.textContent = displayNumber.substring(0,12);
+    }
+}
+
+function pressDigit(e) {
+    if (displayNumber.length < 11) {
+        if (displayNumber === "0" || displayNumber === 0) {
+            displayNumber = e.target.textContent;
+        } else if (displayNumber === "-0" || displayNumber === -0) {
+            displayNumber = "-" + e.target.textContent;
         } else {
-            numbers.textContent += e.target.textContent;
+            displayNumber += e.target.textContent;
         }
     }
+    updateDisplay();
 }
 
 function pressDot() {
-    const numbers = document.querySelector(".numbers");
-    if (numbers.textContent.includes('.')) {
+    if (displayNumber.includes('.')) {
         return;
     } else {
-        numbers.textContent += '.';
+        displayNumber += '.';
     }
+    updateDisplay();
 }
 
 function plusOrMinus() {
-    const numbers = document.querySelector(".numbers");
-    if (numbers.textContent.includes('-')) {
-        const arrayNumbers = numbers.textContent.split("");
+    if (displayNumber.includes('-')) {
+        const arrayNumbers = displayNumber.split("");
         const positiveArrayNumbers = arrayNumbers.slice(1);
         const positiveNumbers = positiveArrayNumbers.join("");
-        numbers.textContent = positiveNumbers;
+        displayNumber = positiveNumbers;
     } else {
-        numbers.textContent = "-" + numbers.textContent;
+        displayNumber = "-" + displayNumber;
     }
+    updateDisplay();
 }
 
 function pressAllClear () {
-    const numbers = document.querySelector(".numbers");
-    numbers.textContent = "0";
+    displayNumber = "0";
     a = undefined;
     b = undefined;
     operator = undefined;
-    return [a, b, operator];
+    updateDisplay();
 }
 
 function pressClear() {
-    const numbers = document.querySelector(".numbers");
-    numbers.textContent = "0";
+    displayNumber = "0";
+    updateDisplay();
 }
 
 function pressOperator(e) {
-    const numbers = document.querySelector(".numbers");
     if (a === undefined) {
-        a = numbers.textContent;
-        numbers.textContent = "0";
+        a = displayNumber;
+        displayNumber = "0";
     } else {
         pressEqual();
     }
     operator = e.target.classList[1];
-    return [a,b,operator];
 }
 
 function pressEqual() {
-    const numbers = document.querySelector(".numbers");
     if (a === undefined) {
         return;
     } else if (b === undefined) {
-        b = numbers.textContent;
+        b = displayNumber;
         a = operate(operator,a,b);
-        numbers.textContent = a;
+        displayNumber = a;
     } else {
         a = operate(operator,a,b);
-        numbers.textContent = a;
+        displayNumber = a;
     }
-    return [a,b];
+    updateDisplay();
 }
